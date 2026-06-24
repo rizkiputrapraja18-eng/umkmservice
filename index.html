@@ -4,201 +4,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RZ Electronics | Servis & PCB Design</title>
+    <title>RZ Electronics | Professional Service & PCB Design</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* Smooth scrolling buat anchor link */
         html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: #0b0f19; color: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; }
         
-        .hero-title { color: #ffffff; text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
-        .glow-text { color: #00ffff; text-shadow: 0 0 15px #00ffff; }
+        :root { --primary-blue: #007bff; --secondary-blue: #00d2ff; }
         
-        .interactive-logo { transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; }
-        .interactive-logo:hover { transform: scale(1.1) rotate(5deg); filter: brightness(1.2) drop-shadow(0 0 10px #00ffff); }
+        .navbar { background-color: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         
-        .glow-button { transition: box-shadow 0.3s, transform 0.3s; }
-        .glow-button:hover { box-shadow: 0 0 15px #00ffff; transform: translateY(-2px); }
-        
-        .card-dark-style { background-color: #1a2236; border-radius: 10px; color: #ffffff; border: 1px solid rgba(0, 255, 255, 0.1); }
-        .card-dark-style h4 { font-weight: 700; }
-        .card-dark-style p { color: rgba(255, 255, 255, 0.8); }
-
-        /* Style khusus Sidebar Offcanvas */
-        .custom-offcanvas { background-color: #0b0f19 !important; border-left: 1px solid rgba(0, 255, 255, 0.2); }
-        .sidebar-link { color: rgba(255, 255, 255, 0.7); transition: color 0.3s, padding-left 0.3s; text-decoration: none; display: block; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .sidebar-link:hover, .sidebar-link.active { color: #00ffff !important; font-weight: 600; text-shadow: 0 0 5px rgba(0,255,255,0.5); padding-left: 10px; }
-        .btn-hamburger { color: #00ffff; font-size: 2rem; background: none; border: none; transition: 0.3s; }
-        .btn-hamburger:hover { color: #ffffff; text-shadow: 0 0 10px #00ffff; transform: scale(1.1); }
-
-        /* Floating WA Button */
-        .float-wa {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50%; 
-            font-size: 30px;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
-            z-index: 100;
-            transition: 0.3s;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            text-decoration: none; 
+        /* Gradient Text Accent */
+        .text-gradient { 
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
         }
-        .float-wa:hover { background-color: #1ebe57; color: white; transform: scale(1.1); box-shadow: 0 0 20px rgba(37, 211, 102, 0.8); }
+        
+        .btn-blue { background: linear-gradient(90deg, var(--primary-blue), #0056b3); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); transition: 0.3s;}
+        .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4); color: #fff; }
+        
+        /* Card Accents */
+        .card-neutral { 
+            background-color: #ffffff; 
+            border: none;
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 12px; 
+            transition: all 0.4s ease; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+        }
+        .card-neutral:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .card-img-top { height: 200px; object-fit: cover; border-radius: 12px 12px 0 0; }
+        
+        /* Icon Hover Animation */
+        .icon-accent i { transition: transform 0.3s ease; display: inline-block; }
+        .card-neutral:hover .icon-accent i { transform: scale(1.2) rotate(-5deg); color: var(--secondary-blue) !important; }
+
+        /* Hero Section */
+        .hero-section { position: relative; padding: 120px 0; overflow: hidden; background-color: #f8f9fa; }
+        .hero-bg-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-bg-slider .carousel-inner, .hero-bg-slider .carousel-item { height: 100%; }
+        .hero-bg-slider img { object-fit: cover; width: 100%; height: 100%; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.8) 100%); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; }
+        
+        /* Tech Pattern Background */
+        .bg-pattern {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(#ced4da 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .sidebar-link { color: #555; text-decoration: none; padding: 12px 0; display: block; border-bottom: 1px solid #eee; transition: 0.2s;}
+        .sidebar-link:hover { color: var(--primary-blue); font-weight: 600; padding-left: 10px;}
+        
+        /* Efek Floating untuk Offcanvas */
+        .floating-menu {
+            top: 20px !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            height: calc(100vh - 40px) !important;
+            border-radius: 20px !important;
+            border: none !important;
+            box-shadow: -5px 10px 30px rgba(0,0,0,0.15) !important;
+        }
+        
+        .float-wa {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: #25d366; color: #FFF; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 100;
+            transition: 0.3s;
+        }
+        .float-wa:hover { transform: scale(1.1); }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar sticky-top" style="background-color: #0b0f19; border-bottom: 1px solid rgba(0, 255, 255, 0.2);">
+    <nav class="navbar sticky-top py-3">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="me-3 interactive-logo">
-                    <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="#00ffff" stroke-width="4"/>
-                    <path d="M10 35h10M10 50h10M10 65h10M80 35h10M80 50h10M80 65h10M35 10v10M50 10v10M65 10v10M35 80v10M50 80v10M65 80v10" stroke="#00ffff" stroke-width="4" stroke-linecap="round"/>
-                    <text x="50" y="58" font-family="'Poppins', sans-serif" font-size="28" font-weight="bold" fill="#00ffff" text-anchor="middle">RZ</text>
-                </svg>
-                <span class="fs-4 text-white glow-text">RZ Electronics</span>
+            <a class="navbar-brand fw-bold d-flex align-items-center text-dark fs-3" href="index.html">
+                <i class="bi bi-cpu fs-1 text-blue me-3"></i> <span>RZ <span class="text-gradient">Electronics</span></span>
             </a>
-            
-            <button class="btn-hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
-                <i class="bi bi-list"></i>
+            <button class="btn btn-outline-primary border-0 shadow-sm px-3 py-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+                <i class="bi bi-list fs-2"></i>
             </button>
         </div>
     </nav>
 
-    <div class="offcanvas offcanvas-end custom-offcanvas text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-        <div class="offcanvas-header border-bottom" style="border-color: rgba(0,255,255,0.2) !important;">
-            <h5 class="offcanvas-title fw-bold glow-text" id="sidebarMenuLabel">Menu</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="offcanvas offcanvas-end floating-menu" id="sidebarMenu">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold text-gradient fs-4">Menu Navigasi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
-        <div class="offcanvas-body d-flex flex-column">
-            <ul class="list-unstyled fs-5 mt-3">
-                <li><a class="sidebar-link active" href="index.html"><i class="bi bi-house-door-fill me-3 text-info"></i> Beranda</a></li>
-                <li><a class="sidebar-link" href="portofolio.html"><i class="bi bi-images me-3 text-info"></i> Portofolio</a></li>
-                <li><a class="sidebar-link" href="booking.html"><i class="bi bi-calendar-check-fill me-3 text-info"></i> Booking Jadwal</a></li>
-                <li><a class="sidebar-link" href="pembayaran.html"><i class="bi bi-wallet-fill me-3 text-info"></i> Pembayaran</a></li>
-                <li><a class="sidebar-link" href="kontak.html"><i class="bi bi-telephone-fill me-3 text-info"></i> Kontak</a></li>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled fs-5">
+                <li><a class="sidebar-link py-3" href="index.html"><i class="bi bi-house-door me-3 text-blue"></i> Beranda</a></li>
+                <li><a class="sidebar-link py-3" href="pembayaran.html"><i class="bi bi-currency-dollar me-3 text-blue"></i> Pembayaran</a></li>
+                <li><a class="sidebar-link py-3" href="booking.html"><i class="bi bi-calendar-check me-3 text-blue"></i> Booking Jadwal</a></li>
+                <li><a class="sidebar-link py-3" href="project.html"><i class="bi bi-rocket-takeoff me-3 text-blue"></i> Project</a></li>
             </ul>
-            
-            <div class="mt-auto pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
-                <p class="text-muted small mb-1">Butuh bantuan darurat?</p>
-                <a href="https://wa.me/6281234567890" class="btn btn-outline-info btn-sm w-100"><i class="bi bi-whatsapp me-2"></i>Hubungi Teknisi</a>
-            </div>
         </div>
     </div>
 
-    <section class="hero py-5 d-flex align-items-center bg-dark text-white"
-        style="min-height: 80vh; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-xl-8">
-                    <h1 class="display-3 fw-bold mb-4 hero-title">SOLUSI SERVIS & <span class="glow-text">CUSTOM PCB</span></h1>
-                    <p class="lead mb-5 opacity-75">Melayani perbaikan perangkat elektronik, perakitan modul custom, hingga jasa desain dan cetak PCB presisi tinggi untuk kebutuhan hobi maupun industri.</p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                        <a href="#layanan" class="btn btn-info btn-lg px-5 py-3 fw-bold shadow text-white glow-button">Lihat Layanan</a>
-                        <a href="#tentang" class="btn btn-outline-light btn-lg px-5 py-3">Tentang Kami</a>
-                    </div>
+    <section class="hero-section text-center">
+        <div id="heroBgSlider" class="carousel slide carousel-fade hero-bg-slider" data-bs-ride="carousel">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100" data-bs-interval="4000">
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Slide 1">
+                </div>
+                <div class="carousel-item h-100" data-bs-interval="4000">
+                    <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Slide 2">
+                </div>
+                <div class="carousel-item h-100" data-bs-interval="4000">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Slide 3">
                 </div>
             </div>
         </div>
-    </section>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="display-4 fw-bold mb-3">Solusi Servis & <span class="text-gradient">PCB Design</span></h1>
+            <p class="lead text-secondary mb-4 mx-auto" style="max-width: 600px;">Presisi, Transparan, dan Terpercaya untuk Kebutuhan Elektronik Anda.</p>
 
-    <section id="tentang" class="py-5" style="background-color: #121826;">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop" class="img-fluid rounded shadow-lg" alt="Meja Servis RZ Electronics" style="border: 2px solid rgba(0,255,255,0.2);">
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4 glow-text">Lebih Dari Sekadar Servis Biasa</h2>
-                    <p class="text-light opacity-75 lh-lg">
-                        Berlokasi di Bekasi, <strong>RZ Electronics</strong> hadir sebagai solusi terpercaya untuk segala permasalahan kelistrikan Anda. Kami tidak hanya memperbaiki barang rusak, tapi juga menganalisa hingga ke akar komponen.
-                    </p>
-                    <p class="text-light opacity-75 lh-lg">
-                        Dengan pengalaman menangani modul berdaya tinggi (SMPS) dan pemrograman mikrokontroler yang stabil seperti STM32 untuk kebutuhan otomotif maupun perangkat harian, meja servis kami siap mengeksekusi ide dan mengembalikan fungsi barang Anda secara optimal.
-                    </p>
-                    <ul class="list-unstyled text-light mt-4">
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-info me-2"></i> Pengerjaan Rapi & Teliti</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-info me-2"></i> Komponen Berkualitas</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-info me-2"></i> Konsultasi Transparan</li>
-                    </ul>
-                </div>
-            </div>
+            <a href="#layanan" class="btn btn-blue btn-lg px-5 rounded-pill">Lihat Layanan <i class="bi bi-arrow-down ms-1"></i></a>
         </div>
     </section>
 
-    <section class="py-5" style="background-color: #0b0f19;">
-        <div class="container">
+    <section id="layanan" class="py-5 bg-pattern">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-2">Layanan Kami</h2>
+            <div class="row justify-content-center mb-5"><div class="col-2"><hr class="border-primary border-2 opacity-75"></div></div>
+            
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card h-100 text-center border-0 p-4 card-dark-style shadow">
-                        <div class="card-body">
-                            <div class="mb-3 text-info fs-1"><i class="bi bi-motherboard-fill"></i></div>
-                            <h4>Desain Presisi</h4>
-                            <p>Routing jalur PCB rapi dan aman untuk berbagai macam sirkuit, termasuk modul berdaya tinggi.</p>
+                    <div class="card card-neutral p-4 h-100 text-center">
+                        <div class="icon-accent mb-3">
+                            <i class="bi bi-motherboard display-4 text-blue"></i>
                         </div>
+                        <h5 class="fw-bold">Desain & Layout PCB</h5>
+                        <p class="text-muted small">Professional routing untuk single maupun double layer dengan standar pabrik.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 text-center border-0 p-4 card-dark-style shadow">
-                        <div class="card-body">
-                            <div class="mb-3 text-info fs-1"><i class="bi bi-lightning-charge-fill"></i></div>
-                            <h4>Custom & Microcontroller</h4>
-                            <p>Menerima perakitan SMPS, inverter, hingga programming mikrokontroler untuk sistem yang stabil.</p>
+                    <div class="card card-neutral p-4 h-100 text-center">
+                        <div class="icon-accent mb-3">
+                            <i class="bi bi-lightning-charge display-4 text-blue"></i>
                         </div>
+                        <h5 class="fw-bold">Custom SMPS High-Power</h5>
+                        <p class="text-muted small">Perakitan power supply tangguh dengan sistem proteksi OCP yang aman.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 text-center border-0 p-4 card-dark-style shadow">
-                        <div class="card-body">
-                            <div class="mb-3 text-info fs-1"><i class="bi bi-tools"></i></div>
-                            <h4>Servis Terpercaya</h4>
-                            <p>Analisa kerusakan akurat dan perbaikan tuntas untuk berbagai macam barang elektronik harian.</p>
+                    <div class="card card-neutral p-4 h-100 text-center">
+                        <div class="icon-accent mb-3">
+                            <i class="bi bi-tools display-4 text-blue"></i>
                         </div>
+                        <h5 class="fw-bold">Servis Elektronik</h5>
+                        <p class="text-muted small">Perbaikan tuntas dengan analisa komponen mendalam langsung di meja service.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="layanan" class="py-5" style="background-color: #121826;">
-        <div class="container">
-            <h2 class="text-center fw-bold mb-5 glow-text">Layanan & Produk</h2>
-
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-2">Galeri Pengerjaan</h2>
+            <div class="row justify-content-center mb-5"><div class="col-2"><hr class="border-primary border-2 opacity-75"></div></div>
+            
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-lg card-dark-style p-2">
-                        <img src="/view-preview-3d_20240621_172130.png" class="card-img-top rounded" alt="Desain PCB">
-                        <div class="card-body px-2 py-3">
-                            <h5 class="fw-bold text-info">Jasa Desain & Layout PCB</h5>
-                            <p class="text-light opacity-75 text-sm mb-0">Pembuatan layout dari skematik. Siap cetak untuk single atau double layer.</p>
+                    <div class="card card-neutral h-100 overflow-hidden border-0 shadow-sm">
+                        <img src="/IMG20260610225217.jpg" class="card-img-top" alt="SMPS">
+                        <div class="p-4">
+                            <span class="badge bg-danger mb-2">Power Supply</span>
+                            <h6 class="fw-bold fs-5">SMPS</h6>
+                            <p class="text-muted small mb-0">Hasil rakitan Flyback, Half Bridge, Full Bridge dengan MOSFET berkualitas dan lilitan custom presisi.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-lg card-dark-style p-2">
-                        <img src="/IMG20260610225217.jpg" class="card-img-top rounded" alt="Custom SMPS">
-                        <div class="card-body px-2 py-3">
-                            <h5 class="fw-bold text-info">Custom SMPS High-Power</h5>
-                            <p class="text-light opacity-75 text-sm mb-0">Perakitan power supply switching dengan proteksi kelistrikan aman.</p>
+                    <div class="card card-neutral h-100 overflow-hidden border-0 shadow-sm">
+                        <img src="/view-preview-3d_20240621_172130.png" class="card-img-top" alt="PCB">
+                        <div class="p-4">
+                            <span class="badge bg-primary mb-2">Design PCB</span>
+                            <h6 class="fw-bold fs-5">Custom PCB Layout</h6>
+                            <p class="text-muted small mb-0">Desain jalur sirkuit presisi siap cetak untuk berbagai project.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-lg card-dark-style p-2">
-                        <img src="/Screenshot 2026-06-17 113842.png" class="card-img-top rounded" alt="Servis Elektronik">
-                        <div class="card-body px-2 py-3">
-                            <h5 class="fw-bold text-info">Servis Elektronik Umum</h5>
-                            <p class="text-light opacity-75 text-sm mb-0">Perbaikan perangkat mati total, modifikasi, hingga penggantian komponen spesifik.</p>
+                    <div class="card card-neutral h-100 overflow-hidden border-0 shadow-sm">
+                        <img src="/WhatsApp Image 2026-06-24 at 10.46.23.jpeg" class="card-img-top" alt="Ignition">
+                        <div class="p-4">
+                            <span class="badge bg-success mb-2">Microcontroller</span>
+                            <h6 class="fw-bold fs-5">Digital Ignition Mapping</h6>
+                            <p class="text-muted small mb-0">Upgrade performa tanpa delay menggunakan mikrokontroler super stabil.</p>
                         </div>
                     </div>
                 </div>
@@ -206,45 +210,17 @@
         </div>
     </section>
 
-    <section class="py-5" style="background-color: #121826;">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-5 glow-text">Bagaimana Cara Order?</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-3">
-                    <div class="mb-3 fs-1 text-info"><i class="bi bi-chat-dots-fill"></i></div>
-                    <h5 class="fw-bold text-white">1. Konsultasi</h5>
-                    <p class="text-light opacity-75 small">Ceritakan masalah barang atau ide custom Anda via WhatsApp.</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3 fs-1 text-info"><i class="bi bi-search"></i></div>
-                    <h5 class="fw-bold text-white">2. Analisa & Estimasi</h5>
-                    <p class="text-light opacity-75 small">Kami cek kerusakannya dan berikan estimasi biaya transparan.</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3 fs-1 text-info"><i class="bi bi-gear-fill"></i></div>
-                    <h5 class="fw-bold text-white">3. Eksekusi</h5>
-                    <p class="text-light opacity-75 small">Barang diservis atau dirakit di meja kerja dengan teliti.</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3 fs-1 text-info"><i class="bi bi-box-seam-fill"></i></div>
-                    <h5 class="fw-bold text-white">4. Selesai & Tes</h5>
-                    <p class="text-light opacity-75 small">Barang diuji coba sebelum dikembalikan ke tangan Anda.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-dark text-white text-center py-4 border-top border-secondary">
+    <footer class="py-4 text-center bg-dark text-light mt-auto">
         <div class="container">
-            <p class="mb-0">&copy; 2026 RZ Electronics | Servis Elektronik & PCB Design Bekasi</p>
+            <h5 class="fw-bold text-gradient mb-3">RZ Electronics</h5>
+            <p class="text-secondary small mb-0">&copy; 2026 RZ Electronics. Dikerjakan dengan ketelitian.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/6281234567890" class="float-wa" target="_blank" title="Chat Teknisi">
+    <a href="https://wa.me/6281234567890" class="float-wa" target="_blank" title="Chat via WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
