@@ -8,88 +8,114 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* Smooth scrolling buat anchor link */
         html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: #0b0f19; color: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; }
         
-        .hero-title { color: #ffffff; text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
-        .glow-text { color: #00ffff; text-shadow: 0 0 15px #00ffff; }
+        :root { --primary-blue: #007bff; --secondary-blue: #00d2ff; }
         
-        .interactive-logo { transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; }
-        .interactive-logo:hover { transform: scale(1.1) rotate(5deg); filter: brightness(1.2) drop-shadow(0 0 10px #00ffff); }
+        .navbar { background-color: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         
-        .form-control, .form-select { background-color: #1a2236; border: 1px solid rgba(0, 255, 255, 0.3); color: #fff; }
-        .form-control:focus, .form-select:focus { background-color: #1a2236; color: #fff; border-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.3); }
+        /* Gradient Text Accent */
+        .text-gradient { 
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
         
-        .glow-button { background-color: transparent; border: 2px solid #00ffff; color: #00ffff; transition: 0.3s; }
-        .glow-button:hover { background-color: #00ffff; color: #0b0f19; box-shadow: 0 0 15px #00ffff; }
+        .text-blue { color: var(--primary-blue) !important; }
+
+        .btn-blue { background: linear-gradient(90deg, var(--primary-blue), #0056b3); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); transition: 0.3s;}
+        .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4); color: #fff; }
         
-        /* Style khusus Sidebar Offcanvas */
-        .custom-offcanvas { background-color: #0b0f19 !important; border-left: 1px solid rgba(0, 255, 255, 0.2); }
-        .sidebar-link { color: rgba(255, 255, 255, 0.7); transition: color 0.3s, padding-left 0.3s; text-decoration: none; display: block; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .sidebar-link:hover, .sidebar-link.active { color: #00ffff !important; font-weight: 600; text-shadow: 0 0 5px rgba(0,255,255,0.5); padding-left: 10px; }
-        .btn-hamburger { color: #00ffff; font-size: 2rem; background: none; border: none; transition: 0.3s; }
-        .btn-hamburger:hover { color: #ffffff; text-shadow: 0 0 10px #00ffff; transform: scale(1.1); }
+        /* Card Accents */
+        .card-neutral { 
+            background-color: #ffffff; 
+            border: none;
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 12px; 
+            transition: all 0.4s ease; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+        }
+        .card-neutral:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        
+        .bg-pattern {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(#ced4da 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        /* Sidebar Link Styling */
+        .sidebar-link { color: #555; text-decoration: none; padding: 12px 0; display: block; border-bottom: 1px solid #eee; transition: 0.2s;}
+        .sidebar-link:hover, .sidebar-link.active { color: var(--primary-blue); font-weight: 600; padding-left: 10px;}
+        
+        /* Floating Offcanvas */
+        .floating-menu {
+            top: 20px !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            height: calc(100vh - 40px) !important;
+            border-radius: 20px !important;
+            border: none !important;
+            box-shadow: -5px 10px 30px rgba(0,0,0,0.15) !important;
+        }
+
+        /* Form Customizations */
+        .form-control, .form-select { border: 1px solid #dee2e6; padding: 10px 15px; border-radius: 8px; transition: 0.3s; }
+        .form-control:focus, .form-select:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15); }
     </style>
 </head>
-<body>
+<body class="bg-pattern">
 
-    <nav class="navbar sticky-top" style="background-color: #0b0f19; border-bottom: 1px solid rgba(0, 255, 255, 0.2);">
+    <nav class="navbar sticky-top py-3">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="me-3 interactive-logo">
-                    <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="#00ffff" stroke-width="4"/>
-                    <path d="M10 35h10M10 50h10M10 65h10M80 35h10M80 50h10M80 65h10M35 10v10M50 10v10M65 10v10M35 80v10M50 80v10M65 80v10" stroke="#00ffff" stroke-width="4" stroke-linecap="round"/>
-                    <text x="50" y="58" font-family="'Poppins', sans-serif" font-size="28" font-weight="bold" fill="#00ffff" text-anchor="middle">RZ</text>
-                </svg>
-                <span class="fs-4 text-white glow-text">RZ Electronics</span>
+            <a class="navbar-brand fw-bold d-flex align-items-center text-dark" href="index.html">
+                <i class="bi bi-cpu fs-2 text-blue me-2"></i> <span>RZ <span class="text-gradient">Electronics</span></span>
             </a>
-            
-            <button class="btn-hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
-                <i class="bi bi-list"></i>
+            <button class="btn btn-outline-primary border-0 shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+                <i class="bi bi-list fs-4"></i>
             </button>
         </div>
     </nav>
 
-    <div class="offcanvas offcanvas-end custom-offcanvas text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-        <div class="offcanvas-header border-bottom" style="border-color: rgba(0,255,255,0.2) !important;">
-            <h5 class="offcanvas-title fw-bold glow-text" id="sidebarMenuLabel">Menu Navigasi</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="offcanvas offcanvas-end floating-menu" id="sidebarMenu">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold text-gradient fs-4">Menu Navigasi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column">
-            <ul class="list-unstyled fs-5 mt-3">
-                <li><a class="sidebar-link" href="index.html"><i class="bi bi-house-door-fill me-3 text-info"></i> Beranda</a></li>
-                <li><a class="sidebar-link" href="portofolio.html"><i class="bi bi-images me-3 text-info"></i> Portofolio</a></li>
-                <li><a class="sidebar-link active" href="booking.html"><i class="bi bi-calendar-check-fill me-3 text-info"></i> Booking Jadwal</a></li>
-                <li><a class="sidebar-link" href="pembayaran.html"><i class="bi bi-wallet-fill me-3 text-info"></i> Pembayaran</a></li>
-                <li><a class="sidebar-link" href="kontak.html"><i class="bi bi-telephone-fill me-3 text-info"></i> Kontak</a></li>
+            <ul class="list-unstyled fs-5 mt-2">
+                <li><a class="sidebar-link" href="index.html"><i class="bi bi-house-door me-3 text-blue"></i> Beranda</a></li>
+                <li><a class="sidebar-link" href="pembayaran.html"><i class="bi bi-currency-dollar me-3 text-blue"></i> Pembayaran</a></li>
+                <li><a class="sidebar-link active" href="booking.html"><i class="bi bi-calendar-check-fill me-3 text-blue"></i> Booking Jadwal</a></li>
+                <li><a class="sidebar-link" href="project.html"><i class="bi bi-rocket-takeoff me-3 text-blue"></i> Project</a></li>
+                <li><a class="sidebar-link" href="kontak.html"><i class="bi bi-telephone me-3 text-blue"></i> Kontak</a></li>
             </ul>
             
-            <div class="mt-auto pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
-                <p class="text-muted small mb-1">Butuh bantuan darurat?</p>
-                <a href="https://wa.me/6281234567890" class="btn btn-outline-info btn-sm w-100"><i class="bi bi-whatsapp me-2"></i>Hubungi Teknisi</a>
+            <div class="mt-auto pt-4 border-top">
+                <p class="text-muted small mb-2 text-center">Butuh bantuan darurat?</p>
+                <a href="https://wa.me/6281234567890" class="btn btn-outline-primary w-100 rounded-pill"><i class="bi bi-whatsapp me-2"></i>Hubungi Teknisi</a>
             </div>
         </div>
     </div>
 
     <section class="py-5">
-        <div class="container mt-4">
+        <div class="container mt-2 mb-5">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="card bg-dark border-0 shadow-lg p-4" style="border-radius: 15px; border: 1px solid rgba(0,255,255,0.2) !important;">
-                        <div class="card-body">
-                            <h2 class="text-center fw-bold mb-4 glow-text"><i class="bi bi-calendar-check me-2"></i>Booking Jadwal Servis</h2>
-                            <p class="text-center text-muted mb-4">Pilih jadwal luang untuk membawa barang atau konsultasi project custom ke workshop kami.</p>
+                    <div class="card card-neutral p-4 p-md-5">
+                        <div class="card-body p-0">
+                            <h2 class="text-center fw-bold mb-3"><i class="bi bi-calendar-check text-blue me-2"></i>Booking <span class="text-gradient">Jadwal Servis</span></h2>
+                            <p class="text-center text-muted mb-5">Pilih jadwal luang untuk membawa barang atau konsultasi project custom ke workshop kami.</p>
 
                             <form action="https://wa.me/6281234567890" method="get" target="_blank">
-                                <div class="mb-3">
-                                    <label class="form-label text-info">Nama Lengkap</label>
+                                <div class="mb-4">
+                                    <label class="form-label fw-medium text-dark">Nama Lengkap</label>
                                     <input type="text" class="form-control" name="text" placeholder="Masukkan nama..." required>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label text-info">Jenis Layanan</label>
+                                <div class="mb-4">
+                                    <label class="form-label fw-medium text-dark">Jenis Layanan</label>
                                     <select class="form-select">
-                                        <option selected>Pilih layanan...</option>
+                                        <option selected disabled>Pilih layanan...</option>
                                         <option value="Servis Elektronik">Servis Elektronik Umum</option>
                                         <option value="Custom SMPS">Custom SMPS / Power Supply</option>
                                         <option value="Desain PCB">Desain & Cetak PCB</option>
@@ -97,21 +123,21 @@
                                     </select>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label text-info">Tanggal Booking</label>
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-medium text-dark">Tanggal Booking</label>
                                         <input type="date" class="form-control" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label text-info">Waktu Kedatangan</label>
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-medium text-dark">Waktu Kedatangan</label>
                                         <input type="time" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label text-info">Detail Keluhan / Project</label>
-                                    <textarea class="form-control" rows="3" placeholder="Jelaskan detail barang atau projectnya..."></textarea>
+                                <div class="mb-5">
+                                    <label class="form-label fw-medium text-dark">Detail Keluhan / Project</label>
+                                    <textarea class="form-control" rows="4" placeholder="Jelaskan detail barang atau projectnya..."></textarea>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn glow-button py-3 fw-bold fs-5">Kirim Booking via WhatsApp <i class="bi bi-whatsapp ms-2"></i></button>
+                                    <button type="submit" class="btn btn-blue py-3 fw-bold fs-5 rounded-pill shadow-sm">Kirim Booking via WhatsApp <i class="bi bi-whatsapp ms-2"></i></button>
                                 </div>
                                 <p class="text-muted text-center mt-3 small">*Tunggu konfirmasi ketersediaan jadwal dari teknisi kami ya om.</p>
                             </form>
